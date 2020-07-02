@@ -1,8 +1,6 @@
 import React from 'react';
 
-
-const SearchInput = ({ departureStation, arrivalStation, handleChange, searchPath }) => {
-
+const SearchInput = ({ departureStation, arrivalStation, changeStationsInput, searchShortestDistance }) => {
   return (
     <>
       <div className="flex flex-wrap mb-3">
@@ -14,7 +12,7 @@ const SearchInput = ({ departureStation, arrivalStation, handleChange, searchPat
             placeholder="출발역"
             name="departureStation"
             value={departureStation}
-            onChange={handleChange}
+            onChange={changeStationsInput}
           />
         </div>
         <div className="w-2/12 h-12 text-center text-gray-800 flex justify-center items-center">
@@ -28,13 +26,13 @@ const SearchInput = ({ departureStation, arrivalStation, handleChange, searchPat
             placeholder="도착역"
             name="arrivalStation"
             value={arrivalStation}
-            onChange={handleChange}
+            onChange={changeStationsInput}
           />
         </div>
       </div>
       <button type="submit" id="search-button"
               className="w-full text-sm bg-yellow-500 hover:bg-yellow-400 hover:text-gray-700 text-gray-800 font-bold py-2 px-4 rounded-sm"
-              onClick={searchPath}>
+              onClick={searchShortestDistance}>
         검색
       </button>
     </>

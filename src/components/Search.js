@@ -21,7 +21,7 @@ const Search = props => {
 
   const { departureStation, arrivalStation } = state;
 
-  const handleChange = e => {
+  const changeStationsInput = e => {
     dispatch(e.target);
   }
 
@@ -50,8 +50,8 @@ const Search = props => {
         <SearchInput
           departureStation={departureStation}
           arrivalStation={arrivalStation}
-          handleChange={handleChange}
-          searchPath={searchShortestDistance}
+          changeStationsInput={changeStationsInput}
+          searchShortestDistance={searchShortestDistance}
         />
       </div>
       {path !== null
