@@ -1,9 +1,9 @@
 import React from "react";
 import { Route } from 'react-router-dom';
 
-import Home from "./pages/Home";
+import Home from "./components/Home";
 import Layout from "./components/Layout";
-import Search from './pages/Search';
+import Search from './components/Search';
 
 import "./assets/service/css/app.css";
 
