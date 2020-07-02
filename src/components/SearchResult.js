@@ -2,22 +2,11 @@ import React, { useState } from 'react';
 import Path from './Path';
 import { PATH_TYPE } from '../utils/constants';
 
-const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
-  const [pathType, setPathType] = useState(PATH_TYPE.DISTANCE);
+const SearchResult = ({ path, pathType, searchShortestDistance, searchMinimumTime }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClickFavoriteBtn = () => {
     setIsFavorite(!isFavorite);
-  }
-
-  const handleClickDistanceTab = () => {
-    setPathType(PATH_TYPE.DISTANCE);
-    searchShortestDistance();
-  }
-
-  const handleClickDurationTab = () => {
-    setPathType(PATH_TYPE.DURATION)
-    searchMinimumTime();
   }
 
   return (
@@ -39,7 +28,7 @@ const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
           <a
             className="w-full text-center inline-block py-2 px-4 font-semibold"
             href="#"
-            onClick={handleClickDistanceTab}>
+            onClick={searchShortestDistance}>
             최단거리
           </a>
         </li>
@@ -48,7 +37,7 @@ const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
           <a
             className="w-full text-center bg-white inline-block py-2 px-4 font-semibold"
             href="#"
-            onClick={handleClickDurationTab}
+            onClick={searchMinimumTime}
           >최소시간</a
           >
         </li>

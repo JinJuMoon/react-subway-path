@@ -15,6 +15,7 @@ function reducer(state, action) {
 
 const Search = props => {
   const [path, setPath] = useState(null);
+  const [pathType, setPathType] = useState(PATH_TYPE.DISTANCE);
   const [state, dispatch] = useReducer(reducer, {
     departureStation: '',
     arrivalStation: ''
@@ -26,7 +27,7 @@ const Search = props => {
     dispatch(e.target);
   }
 
-  const getPath = pathType => {
+  const getPath = () => {
     axios.get(`/paths?source=${departureStation}&target=${arrivalStation}&type=${pathType}`)
     .then(response => response.data)
     .then(data => {
@@ -36,11 +37,13 @@ const Search = props => {
   }
 
   const searchShortestDistance = () => {
-    getPath(PATH_TYPE.DISTANCE);
+    setPathType(PATH_TYPE.DISTANCE);
+    getPath();
   }
 
   const searchMinimumTime = () => {
-    getPath(PATH_TYPE.DURATION)
+    setPathType(PATH_TYPE.DURATION)
+    getPath();
   }
 
   return (
@@ -56,6 +59,7 @@ const Search = props => {
       </div>
       {path !== null
         ? <SearchResult path={path}
+                        pathType={pathType}
                         searchShortestDistance={searchShortestDistance}
                         searchMinimumTime={searchMinimumTime}/>
         : <></>
