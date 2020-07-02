@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import axios from 'axios';
 import SearchInput from './SearchInput';
 import SearchResult from './SearchResult';
@@ -23,9 +23,9 @@ const Search = props => {
 
   const { departureStation, arrivalStation } = state;
 
-  const changeStationsInput = e => {
+  const changeStationsInput = useCallback(e => {
     dispatch(e.target);
-  }
+  }, []);
 
   const getPath = () => {
     axios.get(`/paths?source=${departureStation}&target=${arrivalStation}&type=${pathType}`)
