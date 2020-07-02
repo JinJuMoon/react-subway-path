@@ -3,6 +3,11 @@ import Path from './Path';
 
 const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
   const [type, setType] = useState('DISTANCE');
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleClickFavoriteBtn = () => {
+    setIsFavorite(!isFavorite);
+  }
 
   const handleClickDistanceTab = () => {
     setType('DISTANCE');
@@ -19,7 +24,12 @@ const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
          className="max-w-sm w-full lg:width-350px rounded bg-white shadow-lg p-6 relative border top">
       <button
         id="favorite-button"
-        className="favorite-button bg-yellow-500 mdi mdi-star-outline absolute text-white bg-transparent d-inline-block font-semibold py-2 px-3 hover:border-transparent rounded-full z-10"
+        className={
+          isFavorite
+            ? "favorite-button bg-yellow-500 text-orange-500 mdi mdi-star absolute text-white bg-transparent d-inline-block font-semibold py-2 px-3 hover:border-transparent rounded-full z-10"
+            : "favorite-button bg-yellow-500 mdi mdi-star-outline absolute text-white bg-transparent d-inline-block font-semibold py-2 px-3 hover:border-transparent rounded-full z-10"}
+
+        onClick={handleClickFavoriteBtn}
       >
       </button>
       <ul className="flex border-b w-full">
