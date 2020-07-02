@@ -25,14 +25,22 @@ const Search = props => {
     dispatch(e.target);
   }
 
-  const searchPath = () => {
-    axios.get(`/paths?source=${departureStation}&target=${arrivalStation}&type=DISTANCE`)
+  const getPath = type => {
+    axios.get(`/paths?source=${departureStation}&target=${arrivalStation}&type=${type}`)
     .then(response => response.data)
     .then(data => {
       console.log(data);
       setPath(data);
     })
     .catch(e => console.log(e));
+  }
+
+  const searchShortestDistance = () => {
+    getPath("DISTANCE");
+  }
+
+  const searchMinimumTime = () => {
+    getPath("DURATION")
   }
 
   return (
@@ -43,10 +51,15 @@ const Search = props => {
           departureStation={departureStation}
           arrivalStation={arrivalStation}
           handleChange={handleChange}
-          searchPath={searchPath}
+          searchPath={searchShortestDistance}
         />
       </div>
-      {path !== null ? <SearchResult path={path} /> : <></>}
+      {path !== null
+        ? <SearchResult path={path}
+                        searchShortestDistance={searchShortestDistance}
+                        searchMinimumTime={searchMinimumTime}/>
+        : <></>
+      }
     </div>
   );
 };

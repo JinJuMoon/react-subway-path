@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Path from './Path';
 
-const SearchResult = ({ path }) => {
+const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
+  const [type, setType] = useState('DISTANCE');
+
+  const handleClickDistanceTab = () => {
+    setType('DISTANCE');
+    searchShortestDistance();
+  }
+
+  const handleClickDurationTab = () => {
+    setType('DURATION')
+    searchMinimumTime();
+  }
+
   return (
     <div id="search-result-container"
          className="max-w-sm w-full lg:width-350px rounded bg-white shadow-lg p-6 relative border top">
@@ -11,16 +23,26 @@ const SearchResult = ({ path }) => {
       >
       </button>
       <ul className="flex border-b w-full">
-        <li id="shortest-distance-tab" className="-mb-px w-2/4 active-tab tab-menu">
-          <a className="w-full text-center inline-block py-2 px-4 font-semibold" href="#">최단거리</a>
+        <li id="shortest-distance-tab"
+            className={"-mb-px w-2/4 " + (type === 'DISTANCE' ? 'active-tab' : '') + " tab-menu"}>
+          <a
+            className="w-full text-center inline-block py-2 px-4 font-semibold"
+            href="#"
+            onClick={handleClickDistanceTab}>
+            최단거리
+          </a>
         </li>
-        <li id="minimum-time-tab" className="-mb-px w-2/4 tab-menu">
-          <a className="w-full text-center bg-white inline-block py-2 px-4 font-semibold" href="#"
+        <li id="minimum-time-tab"
+            className={"-mb-px w-2/4 " + (type === 'DURATION' ? 'active-tab' : '') + " tab-menu"}>
+          <a
+            className="w-full text-center bg-white inline-block py-2 px-4 font-semibold"
+            href="#"
+            onClick={handleClickDurationTab}
           >최소시간</a
           >
         </li>
       </ul>
-      <Path path={path} />
+      <Path path={path}/>
     </div>
   );
 };
