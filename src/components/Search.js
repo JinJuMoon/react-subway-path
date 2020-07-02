@@ -25,11 +25,10 @@ const Search = props => {
     dispatch(e.target);
   }
 
-  const getPath = type => {
-    axios.get(`/paths?source=${departureStation}&target=${arrivalStation}&type=${type}`)
+  const getPath = pathType => {
+    axios.get(`/paths?source=${departureStation}&target=${arrivalStation}&type=${pathType}`)
     .then(response => response.data)
     .then(data => {
-      console.log(data);
       setPath(data);
     })
     .catch(e => console.log(e));
