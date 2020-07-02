@@ -4,6 +4,7 @@ import SearchInput from './SearchInput';
 import SearchResult from './SearchResult';
 
 import "../assets/service/css/search.css";
+import { PATH_TYPE } from '../utils/constants';
 
 function reducer(state, action) {
   return {
@@ -35,11 +36,11 @@ const Search = props => {
   }
 
   const searchShortestDistance = () => {
-    getPath("DISTANCE");
+    getPath(PATH_TYPE.DISTANCE);
   }
 
   const searchMinimumTime = () => {
-    getPath("DURATION")
+    getPath(PATH_TYPE.DURATION)
   }
 
   return (

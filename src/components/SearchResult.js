@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Path from './Path';
+import { PATH_TYPE } from '../utils/constants';
 
 const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
-  const [pathType, setPathType] = useState('DISTANCE');
+  const [pathType, setPathType] = useState(PATH_TYPE.DISTANCE);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClickFavoriteBtn = () => {
@@ -10,12 +11,12 @@ const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
   }
 
   const handleClickDistanceTab = () => {
-    setPathType('DISTANCE');
+    setPathType(PATH_TYPE.DISTANCE);
     searchShortestDistance();
   }
 
   const handleClickDurationTab = () => {
-    setPathType('DURATION')
+    setPathType(PATH_TYPE.DURATION)
     searchMinimumTime();
   }
 
@@ -34,7 +35,7 @@ const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
       </button>
       <ul className="flex border-b w-full">
         <li id="shortest-distance-tab"
-            className={"-mb-px w-2/4 " + (pathType === 'DISTANCE' ? 'active-tab' : '') + " tab-menu"}>
+            className={"-mb-px w-2/4 " + (pathType === PATH_TYPE.DISTANCE ? 'active-tab' : '') + " tab-menu"}>
           <a
             className="w-full text-center inline-block py-2 px-4 font-semibold"
             href="#"
@@ -43,7 +44,7 @@ const SearchResult = ({ path, searchShortestDistance, searchMinimumTime }) => {
           </a>
         </li>
         <li id="minimum-time-tab"
-            className={"-mb-px w-2/4 " + (pathType === 'DURATION' ? 'active-tab' : '') + " tab-menu"}>
+            className={"-mb-px w-2/4 " + (pathType === PATH_TYPE.DURATION ? 'active-tab' : '') + " tab-menu"}>
           <a
             className="w-full text-center bg-white inline-block py-2 px-4 font-semibold"
             href="#"
