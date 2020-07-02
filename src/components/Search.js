@@ -1,4 +1,5 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
+import axios from 'axios';
 import SearchInput from './SearchInput';
 import SearchResult from './SearchResult';
 
@@ -12,6 +13,7 @@ function reducer(state, action) {
 }
 
 const Search = props => {
+  const [path, setPath] = useState(null);
   const [state, dispatch] = useReducer(reducer, {
     departureStation: '',
     arrivalStation: ''
@@ -24,7 +26,13 @@ const Search = props => {
   }
 
   const searchPath = () => {
-    // axios로 api 데이터 받아오기
+    axios.get(`/paths?source=${departureStation}&target=${arrivalStation}&type=DISTANCE`)
+    .then(response => response.data)
+    .then(data => {
+      console.log(data);
+      setPath(data);
+    })
+    .catch(e => console.log(e));
   }
 
   return (
