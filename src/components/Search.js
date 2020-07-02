@@ -36,7 +36,7 @@ const Search = props => {
   }
 
   return (
-    <>
+    <div className="flex justify-center items-center flex-col app-container md:py-10 lg:py-10 relative">
       <div className="max-w-sm w-full lg:width-350px rounded bg-white shadow-lg px-6 pt-6 pb-2">
         <div className="font-bold text-xl mb-4 text-center">지하철 경로 검색</div>
         <SearchInput
@@ -46,8 +46,8 @@ const Search = props => {
           searchPath={searchPath}
         />
       </div>
-      <SearchResult/>
-    </>
+      {path !== null ? <SearchResult path={path} /> : <></>}
+    </div>
   );
 };
 
